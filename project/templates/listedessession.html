@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>liste des session</h1>
+
+hello {{request.user.candidat.nom}}
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Date</th>
+        <th>action</th>
+    </thead>
+    <tbody style="text-align: center;">
+        {% for session in sessions %}
+        <tr>
+            <td>{{session.id}}</td>
+            <td>{{session.date}}</td>
+            {% if session.candidat is None %}
+            <td><a href="{% url 'inscrir_dans_session' session.id %}">Insrir dans la session</a></td>
+            {% else %}
+            <td>alreay taken</td>
+            {% endif %}
+        </tr>  
+        {% endfor %}
+    </tbody>
+    
+</table>
+
+
+{% endblock %}
